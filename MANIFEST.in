@@ -1,0 +1,11 @@
+include dash_share/dash_share.min.js
+include dash_share/dash_share.min.js.map
+include dash_share/async-*.js
+include dash_share/async-*.js.map
+include dash_share/*-shared.js
+include dash_share/*-shared.js.map
+include dash_share/metadata.json
+include dash_share/package-info.json
+include README.md
+include LICENSE
+include package.json
