@@ -204,10 +204,12 @@ class DashShare(ABC):
 
     def lock(self):
         """Lock components tagged with `@pause_update`."""
+        print("locked")
         self.locked = True
 
     def unlock(self):
         """Unlock components tagged with `@pause_update`."""
+        print("unlocked")
         self.locked = False
 
     def update_layout(self, layout: AppLayout, *args: tuple[Component]) -> html.Div:
@@ -378,7 +380,7 @@ class FileShare(DashShare):
             to update before the state is saved.
     """
 
-    update_components: list[dict[str, Any]] = field(default_factory=list)
+    update_components: None | dict[str, Any] = None
 
     def load(self, input: str, state: AppLayout) -> AppLayout:
         """Load the application state from a file.
@@ -421,6 +423,7 @@ class FileShare(DashShare):
             return input
         if input is not None and input > 0:
             if self.update_components:
+                print(self.update_components)
                 state = update_component_state(state, None, **self.update_components)
 
             with open(f"./{out_dir}/{hash}.json", "w") as json_file:
